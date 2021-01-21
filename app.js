@@ -9,8 +9,76 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const team = [];
 
+function switchStatement() {
+    inquirer.prompt([
+        {
+            type: "list",
+            message: "What type of employee is being added?",
+            choices: ["Manager", "Intern", "Engineer", "Team Complete"],
+            name: "userChoice"
+        }
+    ])
+        .then(function (answers) {
+            switch (answers.userChoice) {
+                case "Manager":
+                    addManager()
+                    break;
+                case "Intern":
+                    addIntern()
+                    break;
+                case "Engineer":
+                    addEngineer()
+                    break;
+                default:
+              createTeam()
+            }
+        })
+}
+const manQ = [
+    {
+        type: "input",
+        message: "What is the manager's name?",
+        name: "managerName",
+        validate: answer =>{
+            if (answer!== ""){
+                return true;
+            }
+            return "Please enter name";
+        }
+    },
+    {
+        type: "input",
+        message: "What is the manager's ID number?",
+        name: "ManagerID",
+    },
+    {
+        type: "input",
+        message: "What is the manager's email address?",
+        name: "managerEmail",
+    },
+    {
+        type: "input",
+        message: "What is the manager's office number?",
+        name: "officeNum"
+    }
+]
+function addManager() {
+    inquirer.prompt(manQ).then(
+        function (response) {
+            const manager = new Manager(response.managerName, response.ManagerID, response.managerEmail, response.officeNum)
+            team.push(manager)
+            switchStatement()
+        }
+    );
 
+}
+function createTeam(){
+    if (!fs.existsSync(OUTPUT_DIR)){
+        fs.mkdirSync(OUTPUT_DIR)
+    }fs.writeFileSync(outputPath, render(team), "utf-8")
+}
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
@@ -33,3 +101,4 @@ const render = require("./lib/htmlRenderer");
 // for further information. Be sure to test out each class and verify it generates an
 // object with the correct structure and methods. This structure will be crucial in order
 // for the provided `render` function to work! ```
+switchStatement()
