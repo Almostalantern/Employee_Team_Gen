@@ -25,6 +25,13 @@
   # Testing Information
   N/A
 
+  # Screen Shots
+  The interface looks like this in Node.
+  (../assets/Teamgen1.png)
+
+  This is the output.
+  (../assets/TeamGen2.png.)
+
   # Contact Information
   Github:AlmostALantern
  
