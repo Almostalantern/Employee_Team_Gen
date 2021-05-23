@@ -27,10 +27,10 @@
 
   # Screen Shots
   The interface looks like this in Node.
-  (../assets/Teamgen1.png)
+  (https://github.com/Almostalantern/Employee_Team_Gen/blob/main/Assets/Teamgen1.png)
 
   This is the output.
-  (../assets/TeamGen2.png.)
+  (https://github.com/Almostalantern/Employee_Team_Gen/blob/main/Assets/TeamGen2.png)
 
   # Contact Information
   Github:AlmostALantern
